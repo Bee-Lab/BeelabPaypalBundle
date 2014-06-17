@@ -72,7 +72,7 @@ use Beelab\PaypalBundle\Entity\Transaction as BaseTransaction
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Transaction(name="transaction")
+ * @ORM\Table(name="transaction")
  * @ORM\Entity()
  */
 class Transaction extends BaseTransaction
