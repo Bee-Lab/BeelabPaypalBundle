@@ -3,7 +3,7 @@
 namespace Beelab\PaypalBundle\Paypal;
 
 use Beelab\PaypalBundle\Entity\Transaction;
-use Omnipay\PayPal\ProGateway as Gateway;
+use Omnipay\PayPal\ExpressGateway as Gateway;
 use RuntimeException;
 use Symfony\Component\Routing\RouterInterface;
 
