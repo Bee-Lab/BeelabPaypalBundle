@@ -3,7 +3,7 @@
 namespace Beelab\PaypalBundle\Paypal;
 
 use Beelab\PaypalBundle\Entity\Transaction;
-use Omnipay\Common\GatewayInterface;
+use Omnipay\PayPal\ProGateway as Gateway;
 use RuntimeException;
 use Symfony\Component\Routing\RouterInterface;
 
@@ -19,12 +19,12 @@ class Service
     private $transaction;
 
     /**
-     * @param GatewayInterface $gateway
-     * @param RouterInterface  $router
-     * @param Transaction      $transaction
-     * @param array            $config
+     * @param Gateway         $gateway
+     * @param RouterInterface $router
+     * @param Transaction     $transaction
+     * @param array           $config
      */
-    public function __construct(GatewayInterface $gateway, RouterInterface $router, array $config)
+    public function __construct(Gateway $gateway, RouterInterface $router, array $config)
     {
         $gateway
             ->setUsername($config['username'])
@@ -75,7 +75,6 @@ class Service
         if (!$response->isRedirect()) {
             throw new Exception($response->getMessage());
         }
-        $data = $response->getData();
         $this->transaction->setToken($response->getTransactionReference());
 
         return $response;
