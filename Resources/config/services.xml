@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="beelab_paypal.service.class">Beelab\PaypalBundle\Paypal\Service</parameter>
+        <parameter key="beelab_paypal.guzzle.class">Guzzle\Http\Client</parameter>
+    </parameters>
+
+    <services>
+        <service id="beelab_paypal.service" class="%beelab_paypal.service.class%">
+            <argument type="service" id="beelab_paypal.gateway.express" />
+            <argument type="service" id="router" />
+            <argument>%beelab_paypal.config%</argument>
+        </service>
+
+        <service id="beelab_paypal.gateway.factory" class="Omnipay\Common\GatewayFactory"/>
+
+        <service id="beelab_paypal.gateway.express" class="Omnipay\PayPal\ExpressGateway"
+            factory-service="beelab_paypal.gateway.factory"
+            factory-method="create"
+            public="false">
+            <argument>PayPal_Express</argument>
+            <argument type="service" id="beelab_paypal.guzzle.client" />
+        </service>
+
+        <service id="beelab_paypal.guzzle.client" class="%beelab_paypal.guzzle.class%" public="false"/>
+    </services>
+
+</container>
