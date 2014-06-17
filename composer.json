@@ -26,5 +26,10 @@
     "autoload": {
         "psr-0": { "Beelab\\PaypalBundle": "" }
     },
-    "target-dir": "Beelab/PaypalBundle"
+    "target-dir": "Beelab/PaypalBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.1.x-dev"
+        }
+    }
 }
