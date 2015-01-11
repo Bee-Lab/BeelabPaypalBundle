@@ -64,15 +64,14 @@ Create a ``Transaction`` entity class:
 
 ```php
 <?php
-// src/Acme/DemoBundle/Entity
-
-namespace Acme\DemoBundle\Entity;
+// src/AppBundle/Entity
+namespace AppBundle\Entity;
 
 use Beelab\PaypalBundle\Entity\Transaction as BaseTransaction
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Table(name="transaction")
+ * @ORM\Table()
  * @ORM\Entity()
  */
 class Transaction extends BaseTransaction
@@ -87,11 +86,10 @@ You can now implement your actions inside a controller:
 
 ```php
 <?php
-// src/Acme/DemoBundle/Controller/DefaultController
+// src/AppBundle/Controller/DefaultController
+namespace AppBundle\Controller;
 
-namespace Acme\DemoBundle\Controller;
-
-use Acme\DemoBundle\Entity\Transaction;
+use AppBundle\Entity\Transaction;
 use Beelab\PaypalBundle\Paypal\Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -120,7 +118,7 @@ class DefaultController
     public function canceledPaymentAction(Request $request)
     {
         $token = $request->query->get('token');
-        $transaction = $this->getDoctrine()->getRepository('AcmeDemoBundle:Transaction')->findOneByToken($token);
+        $transaction = $this->getDoctrine()->getRepository('AppBundle:Transaction')->findOneByToken($token);
         if (is_null($transaction)) {
             throw $this->createNotFoundException(sprintf('Transaction with token %d not found.', $token));
         }
@@ -136,7 +134,7 @@ class DefaultController
     public function completedPaymentAction(Request $request)
     {
         $token = $request->query->get('token');
-        $transaction = $this->getDoctrine()->getRepository('AcmeDemoBundle:Transaction')->findOneByToken($token);
+        $transaction = $this->getDoctrine()->getRepository('AppBundle:Transaction')->findOneByToken($token);
         if (is_null($transaction)) {
             throw $this->createNotFoundException(sprintf('Transaction with token %d not found.', $token));
         }
