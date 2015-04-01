@@ -38,14 +38,17 @@ class Service
     }
 
     /**
-     * @param Transaction $transaction
+     * Set Transaction and parameters
+     *
+     * @param  Transaction $transaction
+     * @return Service
      */
     public function setTransaction(Transaction $transaction)
     {
         $this->params = array(
             'amount'        => $transaction->getAmount(),
             'currency'      => $this->config['currency'],
-            'description'   => '',
+            'description'   => $transaction->getDescription(),
             'transactionId' => $transaction->getId(),
             'returnUrl'     => $this->router->generate(
                 $this->config['return_route'],
@@ -64,6 +67,8 @@ class Service
     }
 
     /**
+     * Start transaction. You need to call setTransaction() before
+     *
      * @return \Omnipay\Common\Message\ResponseInterface
      */
     public function start()
@@ -81,7 +86,7 @@ class Service
     }
 
     /**
-     * @param Transaction $transaction
+     * Complete transaction. You need to call setTransaction() before
      */
     public function complete()
     {

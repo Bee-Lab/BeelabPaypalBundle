@@ -2,8 +2,8 @@
 
 namespace Beelab\PaypalBundle\Tests\Paypal;
 
-use Beelab\PaypalBundle\Entity\Transaction;
 use Beelab\PaypalBundle\Paypal\Service;
+use Beelab\PaypalBundle\Test\TransactionStub as Transaction;
 use PHPUnit_Framework_TestCase;
 
 /**

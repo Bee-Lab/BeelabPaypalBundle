@@ -2,7 +2,7 @@
 
 namespace Beelab\PaypalBundle\Tests\Entity;
 
-use Beelab\PaypalBundle\Entity\Transaction;
+use Beelab\PaypalBundle\Test\TransactionStub as Transaction;
 use DateTime;
 use PHPUnit_Framework_TestCase;
 

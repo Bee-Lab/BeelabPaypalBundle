@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\MappedSuperclass
  */
-class Transaction
+abstract class Transaction
 {
     const STATUS_KO      = -1;
     const STATUS_STARTED = 0;
@@ -233,4 +233,11 @@ class Transaction
         $this->end = new \DateTime();
         $this->response = $response;
     }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    abstract public function getDescription();
 }

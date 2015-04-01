@@ -64,20 +64,24 @@ Create a ``Transaction`` entity class:
 
 ```php
 <?php
-// src/Acme/DemoBundle/Entity
-
-namespace Acme\DemoBundle\Entity;
+// src/AppBundle/Entity
+namespace AppBundle\Entity;
 
 use Beelab\PaypalBundle\Entity\Transaction as BaseTransaction
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Transaction(name="transaction")
+ * @ORM\Table()
  * @ORM\Entity()
  */
 class Transaction extends BaseTransaction
 {
     // if you need other properties, or relationships, add them here...
+
+    public function getDescription()
+    {
+        // you must implement this method
+    }
 }
 ```
 
