@@ -12,7 +12,7 @@ BeelabPaypalBundle Documentation
 Run from terminal:
 
 ```bash
-$ php composer.phar require beelab/paypal-bundle:1.0.*
+$ composer require beelab/paypal-bundle
 ```
 
 Enable bundle in the kernel:
@@ -113,7 +113,7 @@ class DefaultController
     }
 
     /**
-     * The route configured in "cancel_route" (see above) should point there
+     * The route configured in "cancel_route" (see above) should point here
      */
     public function canceledPaymentAction(Request $request)
     {
@@ -129,7 +129,7 @@ class DefaultController
     }
 
     /**
-     * The route configured in "return_route" (see above) should point there
+     * The route configured in "return_route" (see above) should point here
      */
     public function completedPaymentAction(Request $request)
     {
