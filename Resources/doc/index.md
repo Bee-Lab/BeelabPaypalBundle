@@ -12,7 +12,7 @@ BeelabPaypalBundle Documentation
 Run from terminal:
 
 ```bash
-$ php composer.phar require beelab/paypal-bundle:1.0.*
+$ composer require beelab/paypal-bundle
 ```
 
 Enable bundle in the kernel:
@@ -91,11 +91,10 @@ You can now implement your actions inside a controller:
 
 ```php
 <?php
-// src/Acme/DemoBundle/Controller/DefaultController
+// src/AppBundle/Controller/DefaultController
+namespace AppBundle\Controller;
 
-namespace Acme\DemoBundle\Controller;
-
-use Acme\DemoBundle\Entity\Transaction;
+use AppBundle\Entity\Transaction;
 use Beelab\PaypalBundle\Paypal\Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -119,12 +118,12 @@ class DefaultController
     }
 
     /**
-     * The route configured in "cancel_route" (see above) should point there
+     * The route configured in "cancel_route" (see above) should point here
      */
     public function canceledPaymentAction(Request $request)
     {
         $token = $request->query->get('token');
-        $transaction = $this->getDoctrine()->getRepository('AcmeDemoBundle:Transaction')->findOneByToken($token);
+        $transaction = $this->getDoctrine()->getRepository('AppBundle:Transaction')->findOneByToken($token);
         if (is_null($transaction)) {
             throw $this->createNotFoundException(sprintf('Transaction with token %d not found.', $token));
         }
@@ -135,12 +134,12 @@ class DefaultController
     }
 
     /**
-     * The route configured in "return_route" (see above) should point there
+     * The route configured in "return_route" (see above) should point here
      */
     public function completedPaymentAction(Request $request)
     {
         $token = $request->query->get('token');
-        $transaction = $this->getDoctrine()->getRepository('AcmeDemoBundle:Transaction')->findOneByToken($token);
+        $transaction = $this->getDoctrine()->getRepository('AppBundle:Transaction')->findOneByToken($token);
         if (is_null($transaction)) {
             throw $this->createNotFoundException(sprintf('Transaction with token %d not found.', $token));
         }
