@@ -121,7 +121,7 @@ class ServiceTest extends PHPUnit_Framework_TestCase
         $this->service->start();
     }
 
-    public function testComplete()
+    public function testCompleteWithSuccess()
     {
         $request = $this->getMock('Omnipay\Common\Message\RequestInterface');
         $response = $this->getMock('Omnipay\Common\Message\ResponseInterface');
@@ -139,6 +139,62 @@ class ServiceTest extends PHPUnit_Framework_TestCase
             ->expects($this->once())
             ->method('getData')
             ->will($this->returnValue(array('ACK' => 'Success')))
+        ;
+
+        $transaction = new Transaction(11);
+        $this->service->setTransaction($transaction);
+        $this->service->complete();
+    }
+
+    /**
+     * @expectedException \RuntimeException
+     */
+    public function testCompleteWithFailure1()
+    {
+        $request = $this->getMock('Omnipay\Common\Message\RequestInterface');
+        $response = $this->getMock('Omnipay\Common\Message\ResponseInterface');
+        $this->gateway
+            ->expects($this->once())
+            ->method('completePurchase')
+            ->will($this->returnValue($request))
+        ;
+        $request
+            ->expects($this->once())
+            ->method('send')
+            ->will($this->returnValue($response))
+        ;
+        $response
+            ->expects($this->once())
+            ->method('getData')
+            ->will($this->returnValue(array('foo' => 'bar')))
+        ;
+
+        $transaction = new Transaction(11);
+        $this->service->setTransaction($transaction);
+        $this->service->complete();
+    }
+
+    /**
+     * @expectedException \Exception
+     */
+    public function testCompleteWithFailure2()
+    {
+        $request = $this->getMock('Omnipay\Common\Message\RequestInterface');
+        $response = $this->getMock('Omnipay\Common\Message\ResponseInterface');
+        $this->gateway
+            ->expects($this->once())
+            ->method('completePurchase')
+            ->will($this->returnValue($request))
+        ;
+        $request
+            ->expects($this->once())
+            ->method('send')
+            ->will($this->returnValue($response))
+        ;
+        $response
+            ->expects($this->once())
+            ->method('getData')
+            ->will($this->returnValue(array('ACK' => 'Failure')))
         ;
 
         $transaction = new Transaction(11);

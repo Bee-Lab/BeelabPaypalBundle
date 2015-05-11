@@ -94,6 +94,13 @@ class Service
             throw new RuntimeException('Transaction not defined. Call setTransaction() first.');
         }
         $response = $this->gateway->completePurchase($this->params)->send();
-        $this->transaction->complete($response->getData());
+        $responseData = $response->getData();
+        if (!isset($responseData['ACK'])) {
+            throw new RuntimeException('Missing ACK Payapl in response data.');
+        }
+        if ($responseData['ACK'] != 'Success' && $responseData['ACK'] != 'SuccessWithWarning') {
+            throw new Exception(sprintf('Paypal failure: %s', $responseData['ACK']));
+        }
+        $this->transaction->complete($responseData);
     }
 }

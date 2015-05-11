@@ -22,7 +22,7 @@ abstract class Transaction
     );
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(type="integer")
      * @ORM\Id
@@ -45,7 +45,7 @@ abstract class Transaction
     protected $end;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(type="smallint", options={"default": 0})
      */
@@ -73,7 +73,7 @@ abstract class Transaction
     protected $response;
 
     /**
-     * Costruttore
+     * Constructor
      *
      * @param string $amount
      */
@@ -86,7 +86,7 @@ abstract class Transaction
     /**
      * Get id
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -152,7 +152,7 @@ abstract class Transaction
     /**
      * Get status
      *
-     * @return integer
+     * @return int
      */
     public function getStatus()
     {
