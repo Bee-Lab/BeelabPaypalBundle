@@ -22,7 +22,7 @@ class PaypalServiceStub extends Service
     {
         $request = new ExpressAuthorizeRequest(new Client(), new Request());
 
-        $response = new ExpressAuthorizeResponse($request, 'ACK=Success&token=pippo');
+        $response = new ExpressAuthorizeResponse($request, 'ACK=Success&TOKEN=pippo');
         $this->transaction->setToken($response->getTransactionReference());
 
         return $response;
