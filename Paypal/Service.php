@@ -8,15 +8,34 @@ use RuntimeException;
 use Symfony\Component\Routing\RouterInterface;
 
 /**
- * Paypal service
+ * Paypal service.
  */
 class Service
 {
+    /**
+     * @var Transaction
+     */
+    protected $transaction;
+
+    /**
+     * @var Gateway
+     */
     private $gateway;
+
+    /**
+     * @var RouterInterface
+     */
     private $router;
+
+    /**
+     * @var array
+     */
     private $config;
+
+    /**
+     * @var array
+     */
     private $params;
-    private $transaction;
 
     /**
      * @param Gateway         $gateway
@@ -38,9 +57,10 @@ class Service
     }
 
     /**
-     * Set Transaction and parameters
+     * Set Transaction and parameters.
      *
-     * @param  Transaction $transaction
+     * @param Transaction $transaction
+     *
      * @return Service
      */
     public function setTransaction(Transaction $transaction)
@@ -67,7 +87,7 @@ class Service
     }
 
     /**
-     * Start transaction. You need to call setTransaction() before
+     * Start transaction. You need to call setTransaction() before.
      *
      * @return \Omnipay\Common\Message\ResponseInterface
      */
@@ -86,7 +106,7 @@ class Service
     }
 
     /**
-     * Complete transaction. You need to call setTransaction() before
+     * Complete transaction. You need to call setTransaction() before.
      */
     public function complete()
     {

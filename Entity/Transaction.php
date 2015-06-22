@@ -5,7 +5,7 @@ namespace Beelab\PaypalBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Transaction
+ * Transaction.
  *
  * @ORM\MappedSuperclass
  */
@@ -73,7 +73,7 @@ abstract class Transaction
     protected $response;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param string $amount
      */
@@ -84,7 +84,7 @@ abstract class Transaction
     }
 
     /**
-     * Get id
+     * Get id.
      *
      * @return int
      */
@@ -94,7 +94,7 @@ abstract class Transaction
     }
 
     /**
-     * Set start
+     * Set start.
      *
      * @param \DateTime $start
      */
@@ -106,7 +106,7 @@ abstract class Transaction
     }
 
     /**
-     * Get start
+     * Get start.
      *
      * @return \DateTime
      */
@@ -116,7 +116,7 @@ abstract class Transaction
     }
 
     /**
-     * Set end
+     * Set end.
      *
      * @param \DateTime $end
      */
@@ -128,7 +128,7 @@ abstract class Transaction
     }
 
     /**
-     * Get end
+     * Get end.
      *
      * @return \DateTime
      */
@@ -138,7 +138,7 @@ abstract class Transaction
     }
 
     /**
-     * Set status
+     * Set status.
      *
      * @param int $status
      */
@@ -150,7 +150,7 @@ abstract class Transaction
     }
 
     /**
-     * Get status
+     * Get status.
      *
      * @return int
      */
@@ -168,9 +168,10 @@ abstract class Transaction
     }
 
     /**
-     * Set token
+     * Set token.
      *
-     * @param  string      $token
+     * @param string $token
+     *
      * @return Transaction
      */
     public function setToken($token)
@@ -181,7 +182,7 @@ abstract class Transaction
     }
 
     /**
-     * Get token
+     * Get token.
      *
      * @return string
      */
@@ -191,7 +192,7 @@ abstract class Transaction
     }
 
     /**
-     * Get amount
+     * Get amount.
      *
      * @return string
      */
@@ -201,7 +202,7 @@ abstract class Transaction
     }
 
     /**
-     * Get response
+     * Get response.
      *
      * @return array
      */
@@ -211,7 +212,7 @@ abstract class Transaction
     }
 
     /**
-     * Complete transaction
+     * Complete transaction.
      *
      * @param string $response
      */
@@ -223,7 +224,7 @@ abstract class Transaction
     }
 
     /**
-     * Cancel transaction
+     * Cancel transaction.
      *
      * @param string $response
      */
@@ -235,7 +236,7 @@ abstract class Transaction
     }
 
     /**
-     * Get description
+     * Get description.
      *
      * @return string
      */

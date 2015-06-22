@@ -5,7 +5,7 @@ namespace Beelab\PaypalBundle\Paypal;
 use Exception as BaseException;
 
 /**
- * Paypal exception
+ * Paypal exception.
  */
 class Exception extends BaseException
 {
