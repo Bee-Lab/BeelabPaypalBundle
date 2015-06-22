@@ -4,6 +4,6 @@
 composer.json    export-ignore
 phpunit.xml.dist export-ignore
 README.md        export-ignore
-Test/            export-ignore
+Test/TransactionStub.php  export-ignore
 Tests/           export-ignore
 UPGRADE.md       export-ignore
