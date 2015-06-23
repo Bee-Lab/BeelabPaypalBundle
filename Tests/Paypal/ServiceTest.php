@@ -57,12 +57,17 @@ class ServiceTest extends PHPUnit_Framework_TestCase
 
     public function testStart()
     {
-        $request = $this->getMock('Omnipay\Common\Message\RequestInterface');
+        $request = $this->getRequestMock();
         $response = $this->getMock('Omnipay\Common\Message\ResponseInterface');
         $this->gateway
             ->expects($this->once())
             ->method('purchase')
             ->will($this->returnValue($request))
+        ;
+        $request
+            ->expects($this->once())
+            ->method('setItems')
+            ->will($this->returnSelf());
         ;
         $request
             ->expects($this->once())
@@ -90,12 +95,17 @@ class ServiceTest extends PHPUnit_Framework_TestCase
      */
     public function testStartFailure()
     {
-        $request = $this->getMock('Omnipay\Common\Message\RequestInterface');
+        $request = $this->getRequestMock();
         $response = $this->getMock('Omnipay\Common\Message\ResponseInterface');
         $this->gateway
             ->expects($this->once())
             ->method('purchase')
             ->will($this->returnValue($request))
+        ;
+        $request
+            ->expects($this->once())
+            ->method('setItems')
+            ->will($this->returnSelf());
         ;
         $request
             ->expects($this->once())
@@ -123,12 +133,17 @@ class ServiceTest extends PHPUnit_Framework_TestCase
 
     public function testCompleteWithSuccess()
     {
-        $request = $this->getMock('Omnipay\Common\Message\RequestInterface');
+        $request = $this->getRequestMock();
         $response = $this->getMock('Omnipay\Common\Message\ResponseInterface');
         $this->gateway
             ->expects($this->once())
             ->method('completePurchase')
             ->will($this->returnValue($request))
+        ;
+        $request
+            ->expects($this->once())
+            ->method('setItems')
+            ->will($this->returnSelf());
         ;
         $request
             ->expects($this->once())
@@ -149,14 +164,19 @@ class ServiceTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException \RuntimeException
      */
-    public function testCompleteWithFailure1()
+    public function testCompleteWithFailure()
     {
-        $request = $this->getMock('Omnipay\Common\Message\RequestInterface');
+        $request = $this->getRequestMock();
         $response = $this->getMock('Omnipay\Common\Message\ResponseInterface');
         $this->gateway
             ->expects($this->once())
             ->method('completePurchase')
             ->will($this->returnValue($request))
+        ;
+        $request
+            ->expects($this->once())
+            ->method('setItems')
+            ->will($this->returnSelf());
         ;
         $request
             ->expects($this->once())
@@ -174,17 +194,19 @@ class ServiceTest extends PHPUnit_Framework_TestCase
         $this->service->complete();
     }
 
-    /**
-     * @expectedException \Exception
-     */
-    public function testCompleteWithFailure2()
+    public function testCompleteWithError()
     {
-        $request = $this->getMock('Omnipay\Common\Message\RequestInterface');
+        $request = $this->getRequestMock();
         $response = $this->getMock('Omnipay\Common\Message\ResponseInterface');
         $this->gateway
             ->expects($this->once())
             ->method('completePurchase')
             ->will($this->returnValue($request))
+        ;
+        $request
+            ->expects($this->once())
+            ->method('setItems')
+            ->will($this->returnSelf());
         ;
         $request
             ->expects($this->once())
@@ -208,5 +230,12 @@ class ServiceTest extends PHPUnit_Framework_TestCase
     public function testCompleteWithoutTransaction()
     {
         $this->service->complete();
+    }
+
+    private function getRequestMock()
+    {
+        $methods = array('setItems', 'initialize', 'getParameters', 'getResponse', 'send', 'sendData', 'getData');
+
+        return $this->getMock('Omnipay\Common\Message\RequestInterface', $methods);
     }
 }

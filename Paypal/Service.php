@@ -66,22 +66,25 @@ class Service
     public function setTransaction(Transaction $transaction)
     {
         $this->params = array(
-            'amount'        => $transaction->getAmount(),
-            'currency'      => $this->config['currency'],
-            'description'   => $transaction->getDescription(),
-            'transactionId' => $transaction->getId(),
-            'returnUrl'     => $this->router->generate(
+            'amount'         => $transaction->getAmount(),
+            'currency'       => $this->config['currency'],
+            'description'    => $transaction->getDescription(),
+            'transactionId'  => $transaction->getId(),
+            'returnUrl'      => $this->router->generate(
                 $this->config['return_route'],
                 array(),
                 RouterInterface::ABSOLUTE_URL
             ),
-            'cancelUrl'     => $this->router->generate(
+            'cancelUrl'      => $this->router->generate(
                 $this->config['cancel_route'],
                 array(),
                 RouterInterface::ABSOLUTE_URL
             ),
         );
         $this->transaction = $transaction;
+        if (!empty($items = $transaction->getItems())) {
+            $this->params['shippingAmount'] = $transaction->getShippingAmount();
+        }
 
         return $this;
     }
@@ -96,7 +99,9 @@ class Service
         if (is_null($this->transaction)) {
             throw new RuntimeException('Transaction not defined. Call setTransaction() first.');
         }
-        $response = $this->gateway->purchase($this->params)->send();
+        $items = $this->transaction->getItems();
+        $purchase = $this->gateway->purchase($this->params);
+        $response = !empty($items) ? $purchase->setItems($items)->send() : $purchase->send();
         if (!$response->isRedirect()) {
             throw new Exception($response->getMessage());
         }
@@ -113,14 +118,17 @@ class Service
         if (is_null($this->transaction)) {
             throw new RuntimeException('Transaction not defined. Call setTransaction() first.');
         }
-        $response = $this->gateway->completePurchase($this->params)->send();
+        $items = $this->transaction->getItems();
+        $purchase = $this->gateway->completePurchase($this->params);
+        $response = !empty($items) ? $purchase->setItems($items)->send() : $purchase->send();
         $responseData = $response->getData();
         if (!isset($responseData['ACK'])) {
             throw new RuntimeException('Missing ACK Payapl in response data.');
         }
         if ($responseData['ACK'] != 'Success' && $responseData['ACK'] != 'SuccessWithWarning') {
-            throw new Exception(sprintf('Paypal failure: %s', $responseData['ACK']));
+            $this->transaction->error($responseData);
+        } else {
+            $this->transaction->complete($responseData);
         }
-        $this->transaction->complete($responseData);
     }
 }

@@ -80,7 +80,18 @@ class Transaction extends BaseTransaction
 
     public function getDescription()
     {
-        // you must implement this method
+        // here you can return a generic description, if you don't want to list items
+    }
+
+    public function getItems()
+    {
+        // here you can return an array of items, with each item being an array of name, quantity, price
+        // Note that if the total (price * quantity) of items doesn't match total amount, this won't work
+    }
+
+    public function getShippingAmount()
+    {
+        // here you can return shipping amount. This amount MUST be already in your total amount
     }
 }
 ```
@@ -107,9 +118,8 @@ class DefaultController
         $tranction = new Transaction($amount);
         try {
             $response = $this->get('beelab_paypal.service')->setTransaction($tranction)->start();
-            $manager = $this->getDoctrine()->getManager();
-            $manager->persist($tranction);
-            $manager->flush();
+            $this->getDoctrine()->getManager()->persist($transaction);
+            $this->getDoctrine()->getManager()->flush();
 
             return $this->redirect($response->getRedirectUrl());
         } catch (Exception $e) {
@@ -125,7 +135,7 @@ class DefaultController
         $token = $request->query->get('token');
         $transaction = $this->getDoctrine()->getRepository('AppBundle:Transaction')->findOneByToken($token);
         if (is_null($transaction)) {
-            throw $this->createNotFoundException(sprintf('Transaction with token %d not found.', $token));
+            throw $this->createNotFoundException(sprintf('Transaction with token %s not found.', $token));
         }
         $transaction->cancel(null);
         $this->getDoctrine()->getManager()->flush();
@@ -141,12 +151,15 @@ class DefaultController
         $token = $request->query->get('token');
         $transaction = $this->getDoctrine()->getRepository('AppBundle:Transaction')->findOneByToken($token);
         if (is_null($transaction)) {
-            throw $this->createNotFoundException(sprintf('Transaction with token %d not found.', $token));
+            throw $this->createNotFoundException(sprintf('Transaction with token %s not found.', $token));
         }
         $this->get('beelab_paypal.service')->setTransaction($transaction)->complete();
         $this->getDoctrine()->getManager()->flush();
+        if (!$transazione->isOk()) {
+            return array(); // or a Response (in case of error)
+        }
 
-        return array(); // or a Response...
+        return array(); // or a Response (in case of success)
     }
 }
 ```

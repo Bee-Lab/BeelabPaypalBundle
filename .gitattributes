@@ -6,4 +6,3 @@ phpunit.xml.dist export-ignore
 README.md        export-ignore
 Test/TransactionStub.php  export-ignore
 Tests/           export-ignore
-UPGRADE.md       export-ignore

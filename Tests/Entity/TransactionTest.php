@@ -60,8 +60,8 @@ class TransactionTest extends PHPUnit_Framework_TestCase
     public function testCancel()
     {
         $transaction = new Transaction();
-        $transaction->cancel('foo');
+        $transaction->cancel();
 
-        $this->assertEquals('foo', $transaction->getResponse());
+        $this->assertEquals(null, $transaction->getResponse());
     }
 }

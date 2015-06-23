@@ -14,11 +14,13 @@ abstract class Transaction
     const STATUS_KO      = -1;
     const STATUS_STARTED = 0;
     const STATUS_OK      = 1;
+    const STATUS_ERROR   = 2;
 
     public static $statuses = array(
         self::STATUS_STARTED => 'started',
         self::STATUS_OK      => 'success',
-        self::STATUS_KO      => 'failed',
+        self::STATUS_KO      => 'canceled',
+        self::STATUS_ERROR   => 'failed',
     );
 
     /**
@@ -225,14 +227,31 @@ abstract class Transaction
 
     /**
      * Cancel transaction.
-     *
-     * @param string $response
      */
-    public function cancel($response)
+    public function cancel()
     {
         $this->status = self::STATUS_KO;
         $this->end = new \DateTime();
+    }
+
+    /**
+     * Transaction ended with an error.
+     *
+     * @param string $response
+     */
+    public function error($response)
+    {
+        $this->status = self::STATUS_ERROR;
+        $this->end = new \DateTime();
         $this->response = $response;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isOk()
+    {
+        return $this->status === self::STATUS_OK;
     }
 
     /**
@@ -240,5 +259,27 @@ abstract class Transaction
      *
      * @return string
      */
-    abstract public function getDescription();
+    public function getDescription()
+    {
+    }
+
+    /**
+     * Get items.
+     *
+     * @return array
+     */
+    public function getItems()
+    {
+        return array();
+    }
+
+    /**
+     * Get shipping amount.
+     *
+     * @return string
+     */
+    public function getShippingAmount()
+    {
+        return '0.00';
+    }
 }
