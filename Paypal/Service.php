@@ -82,7 +82,8 @@ class Service
             ),
         );
         $this->transaction = $transaction;
-        if (!empty($items = $transaction->getItems())) {
+        $items = $transaction->getItems();
+        if (!empty($items)) {
             $this->params['shippingAmount'] = $transaction->getShippingAmount();
         }
 
