@@ -64,4 +64,11 @@ class TransactionTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals(null, $transaction->getResponse());
     }
+
+    public function testIsOk()
+    {
+        $transaction = new Transaction();
+
+        $this->assertFalse($transaction->isOk());
+    }
 }

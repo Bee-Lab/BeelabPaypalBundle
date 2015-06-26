@@ -220,9 +220,11 @@ abstract class Transaction
      */
     public function complete($response)
     {
-        $this->status = self::STATUS_OK;
-        $this->end = new \DateTime();
-        $this->response = $response;
+        if ($this->status !== self::STATUS_OK) {
+            $this->status = self::STATUS_OK;
+            $this->end = new \DateTime();
+            $this->response = $response;
+        }
     }
 
     /**
