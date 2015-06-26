@@ -115,9 +115,9 @@ class DefaultController
     public function paymentAction(Request $request)
     {
         $amount = 100;  // get an amount, e.g. from your cart
-        $tranction = new Transaction($amount);
+        $transaction = new Transaction($amount);
         try {
-            $response = $this->get('beelab_paypal.service')->setTransaction($tranction)->start();
+            $response = $this->get('beelab_paypal.service')->setTransaction($transaction)->start();
             $this->getDoctrine()->getManager()->persist($transaction);
             $this->getDoctrine()->getManager()->flush();
 
@@ -163,3 +163,12 @@ class DefaultController
     }
 }
 ```
+
+If you need to pass some custom parameters to Paypal, you can use the optional second parameter of ``setTransaction``
+method. For example, if you want to hide shipping address, you can do:
+
+```php
+$response = $this->get('beelab_paypal.service')->setTransaction($transaction, array('noShipping' => 1))->start();
+```
+
+For a complete set of options, please refer to Paypal official documentation or to OmniPay documentation.

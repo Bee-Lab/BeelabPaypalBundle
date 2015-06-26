@@ -60,12 +60,13 @@ class Service
      * Set Transaction and parameters.
      *
      * @param Transaction $transaction
+     * @param array       $customParameters
      *
      * @return Service
      */
-    public function setTransaction(Transaction $transaction)
+    public function setTransaction(Transaction $transaction, array $customParameters = array())
     {
-        $this->params = array(
+        $defaultParameters = array(
             'amount'         => $transaction->getAmount(),
             'currency'       => $this->config['currency'],
             'description'    => $transaction->getDescription(),
@@ -81,6 +82,7 @@ class Service
                 RouterInterface::ABSOLUTE_URL
             ),
         );
+        $this->params = array_merge($defaultParameters, $customParameters);
         $this->transaction = $transaction;
         $items = $transaction->getItems();
         if (!empty($items)) {
