@@ -11,16 +11,16 @@ use Doctrine\ORM\Mapping as ORM;
  */
 abstract class Transaction
 {
-    const STATUS_KO      = -1;
+    const STATUS_KO = -1;
     const STATUS_STARTED = 0;
-    const STATUS_OK      = 1;
-    const STATUS_ERROR   = 2;
+    const STATUS_OK = 1;
+    const STATUS_ERROR = 2;
 
     public static $statuses = array(
         self::STATUS_STARTED => 'started',
-        self::STATUS_OK      => 'success',
-        self::STATUS_KO      => 'canceled',
-        self::STATUS_ERROR   => 'failed',
+        self::STATUS_OK => 'success',
+        self::STATUS_KO => 'canceled',
+        self::STATUS_ERROR => 'failed',
     );
 
     /**

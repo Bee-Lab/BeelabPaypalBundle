@@ -67,16 +67,16 @@ class Service
     public function setTransaction(Transaction $transaction, array $customParameters = array())
     {
         $defaultParameters = array(
-            'amount'         => $transaction->getAmount(),
-            'currency'       => $this->config['currency'],
-            'description'    => $transaction->getDescription(),
-            'transactionId'  => $transaction->getId(),
-            'returnUrl'      => $this->router->generate(
+            'amount' => $transaction->getAmount(),
+            'currency' => $this->config['currency'],
+            'description' => $transaction->getDescription(),
+            'transactionId' => $transaction->getId(),
+            'returnUrl' => $this->router->generate(
                 $this->config['return_route'],
                 array(),
                 RouterInterface::ABSOLUTE_URL
             ),
-            'cancelUrl'      => $this->router->generate(
+            'cancelUrl' => $this->router->generate(
                 $this->config['cancel_route'],
                 array(),
                 RouterInterface::ABSOLUTE_URL

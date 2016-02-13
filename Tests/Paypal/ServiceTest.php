@@ -20,13 +20,13 @@ class ServiceTest extends PHPUnit_Framework_TestCase
         $this->gateway = $this->getMock('Omnipay\PayPal\ExpressGateway');
         $this->router = $this->getMock('Symfony\Component\Routing\RouterInterface');
         $config = array(
-            'username'     => 'a',
-            'password'     => 'b',
-            'signature'    => 'c',
-            'currency'     => 'EUR',
+            'username' => 'a',
+            'password' => 'b',
+            'signature' => 'c',
+            'currency' => 'EUR',
             'return_route' => 'pippo',
             'cancel_route' => 'pluto',
-            'test_mode'    => true,
+            'test_mode' => true,
         );
         $this->gateway
             ->expects($this->once())
@@ -68,7 +68,6 @@ class ServiceTest extends PHPUnit_Framework_TestCase
             ->expects($this->once())
             ->method('setItems')
             ->will($this->returnSelf());
-        ;
         $request
             ->expects($this->once())
             ->method('send')
@@ -106,7 +105,6 @@ class ServiceTest extends PHPUnit_Framework_TestCase
             ->expects($this->once())
             ->method('setItems')
             ->will($this->returnSelf());
-        ;
         $request
             ->expects($this->once())
             ->method('send')
@@ -144,7 +142,6 @@ class ServiceTest extends PHPUnit_Framework_TestCase
             ->expects($this->once())
             ->method('setItems')
             ->will($this->returnSelf());
-        ;
         $request
             ->expects($this->once())
             ->method('send')
@@ -177,7 +174,6 @@ class ServiceTest extends PHPUnit_Framework_TestCase
             ->expects($this->once())
             ->method('setItems')
             ->will($this->returnSelf());
-        ;
         $request
             ->expects($this->once())
             ->method('send')
@@ -207,7 +203,6 @@ class ServiceTest extends PHPUnit_Framework_TestCase
             ->expects($this->once())
             ->method('setItems')
             ->will($this->returnSelf());
-        ;
         $request
             ->expects($this->once())
             ->method('send')

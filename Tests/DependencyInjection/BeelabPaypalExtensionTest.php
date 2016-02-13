@@ -25,9 +25,9 @@ class BeelabPaypalExtensionTest extends PHPUnit_Framework_TestCase
 
         $extension = new BeelabPaypalExtension();
         $configs = array(
-            array('username'     => 'a'),
-            array('password'     => 'b'),
-            array('signature'    => 'c'),
+            array('username' => 'a'),
+            array('password' => 'b'),
+            array('signature' => 'c'),
             array('return_route' => 'pippo'),
             array('cancel_route' => 'pluto'),
         );
