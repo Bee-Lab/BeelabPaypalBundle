@@ -13,6 +13,6 @@ class TransactionStub extends Transaction
 
     public function getItems()
     {
-        return array(array('name' => 'an item', 'price' => '1.00', 'quantity' => 2));
+        return [['name' => 'an item', 'price' => '1.00', 'quantity' => 2]];
     }
 }

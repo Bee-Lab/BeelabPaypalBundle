@@ -16,12 +16,12 @@ abstract class Transaction
     const STATUS_OK = 1;
     const STATUS_ERROR = 2;
 
-    public static $statuses = array(
+    public static $statuses = [
         self::STATUS_STARTED => 'started',
         self::STATUS_OK => 'success',
         self::STATUS_KO => 'canceled',
         self::STATUS_ERROR => 'failed',
-    );
+    ];
 
     /**
      * @var int
@@ -272,7 +272,7 @@ abstract class Transaction
      */
     public function getItems()
     {
-        return array();
+        return [];
     }
 
     /**

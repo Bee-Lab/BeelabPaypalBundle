@@ -24,13 +24,13 @@ class BeelabPaypalExtensionTest extends PHPUnit_Framework_TestCase
         $container->expects($this->any())->method('getParameterBag')->will($this->returnValue($parameterBag));
 
         $extension = new BeelabPaypalExtension();
-        $configs = array(
-            array('username' => 'a'),
-            array('password' => 'b'),
-            array('signature' => 'c'),
-            array('return_route' => 'pippo'),
-            array('cancel_route' => 'pluto'),
-        );
+        $configs = [
+            ['username' => 'a'],
+            ['password' => 'b'],
+            ['signature' => 'c'],
+            ['return_route' => 'pippo'],
+            ['cancel_route' => 'pluto'],
+        ];
         $extension->load($configs, $container);
     }
 }

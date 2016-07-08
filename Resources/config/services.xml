@@ -13,10 +13,8 @@
 
         <service id="beelab_paypal.gateway.factory" class="Omnipay\Common\GatewayFactory"/>
 
-        <service id="beelab_paypal.gateway.express" class="Omnipay\PayPal\ExpressGateway"
-            factory-service="beelab_paypal.gateway.factory"
-            factory-method="create"
-            public="false">
+        <service id="beelab_paypal.gateway.express" class="Omnipay\PayPal\ExpressGateway" public="false">
+            <factory service="beelab_paypal.gateway.factory" method="create"/>
             <argument>PayPal_Express</argument>
             <argument type="service" id="beelab_paypal.guzzle.client" />
         </service>

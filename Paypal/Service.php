@@ -40,7 +40,6 @@ class Service
     /**
      * @param Gateway         $gateway
      * @param RouterInterface $router
-     * @param Transaction     $transaction
      * @param array           $config
      */
     public function __construct(Gateway $gateway, RouterInterface $router, array $config)
@@ -64,24 +63,24 @@ class Service
      *
      * @return Service
      */
-    public function setTransaction(Transaction $transaction, array $customParameters = array())
+    public function setTransaction(Transaction $transaction, array $customParameters = [])
     {
-        $defaultParameters = array(
+        $defaultParameters = [
             'amount' => $transaction->getAmount(),
             'currency' => $this->config['currency'],
             'description' => $transaction->getDescription(),
             'transactionId' => $transaction->getId(),
             'returnUrl' => $this->router->generate(
                 $this->config['return_route'],
-                array(),
+                [],
                 RouterInterface::ABSOLUTE_URL
             ),
             'cancelUrl' => $this->router->generate(
                 $this->config['cancel_route'],
-                array(),
+                [],
                 RouterInterface::ABSOLUTE_URL
             ),
-        );
+        ];
         $this->params = array_merge($defaultParameters, $customParameters);
         $this->transaction = $transaction;
         $items = $transaction->getItems();

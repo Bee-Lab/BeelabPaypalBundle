@@ -19,7 +19,7 @@ class ServiceTest extends PHPUnit_Framework_TestCase
     {
         $this->gateway = $this->getMock('Omnipay\PayPal\ExpressGateway');
         $this->router = $this->getMock('Symfony\Component\Routing\RouterInterface');
-        $config = array(
+        $config = [
             'username' => 'a',
             'password' => 'b',
             'signature' => 'c',
@@ -27,7 +27,7 @@ class ServiceTest extends PHPUnit_Framework_TestCase
             'return_route' => 'pippo',
             'cancel_route' => 'pluto',
             'test_mode' => true,
-        );
+        ];
         $this->gateway
             ->expects($this->once())
             ->method('setUsername')
@@ -150,7 +150,7 @@ class ServiceTest extends PHPUnit_Framework_TestCase
         $response
             ->expects($this->once())
             ->method('getData')
-            ->will($this->returnValue(array('ACK' => 'Success')))
+            ->will($this->returnValue(['ACK' => 'Success']))
         ;
 
         $transaction = new Transaction(11);
@@ -182,7 +182,7 @@ class ServiceTest extends PHPUnit_Framework_TestCase
         $response
             ->expects($this->once())
             ->method('getData')
-            ->will($this->returnValue(array('foo' => 'bar')))
+            ->will($this->returnValue(['foo' => 'bar']))
         ;
 
         $transaction = new Transaction(11);
@@ -211,7 +211,7 @@ class ServiceTest extends PHPUnit_Framework_TestCase
         $response
             ->expects($this->once())
             ->method('getData')
-            ->will($this->returnValue(array('ACK' => 'Failure')))
+            ->will($this->returnValue(['ACK' => 'Failure']))
         ;
 
         $transaction = new Transaction(11);
@@ -229,7 +229,7 @@ class ServiceTest extends PHPUnit_Framework_TestCase
 
     private function getRequestMock()
     {
-        $methods = array('setItems', 'initialize', 'getParameters', 'getResponse', 'send', 'sendData', 'getData');
+        $methods = ['setItems', 'initialize', 'getParameters', 'getResponse', 'send', 'sendData', 'getData'];
 
         return $this->getMock('Omnipay\Common\Message\RequestInterface', $methods);
     }
