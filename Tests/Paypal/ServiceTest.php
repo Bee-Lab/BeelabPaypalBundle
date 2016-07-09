@@ -17,8 +17,8 @@ class ServiceTest extends PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->gateway = $this->getMock('Omnipay\PayPal\ExpressGateway');
-        $this->router = $this->getMock('Symfony\Component\Routing\RouterInterface');
+        $this->gateway = $this->getMockBuilder('Omnipay\PayPal\ExpressGateway')->getMock();
+        $this->router = $this->getMockBuilder('Symfony\Component\Routing\RouterInterface')->getMock();
         $config = [
             'username' => 'a',
             'password' => 'b',
@@ -58,7 +58,7 @@ class ServiceTest extends PHPUnit_Framework_TestCase
     public function testStart()
     {
         $request = $this->getRequestMock();
-        $response = $this->getMock('Omnipay\Common\Message\ResponseInterface');
+        $response = $this->getMockBuilder('Omnipay\Common\Message\ResponseInterface')->getMock();
         $this->gateway
             ->expects($this->once())
             ->method('purchase')
@@ -95,7 +95,7 @@ class ServiceTest extends PHPUnit_Framework_TestCase
     public function testStartFailure()
     {
         $request = $this->getRequestMock();
-        $response = $this->getMock('Omnipay\Common\Message\ResponseInterface');
+        $response = $this->getMockBuilder('Omnipay\Common\Message\ResponseInterface')->getMock();
         $this->gateway
             ->expects($this->once())
             ->method('purchase')
@@ -132,7 +132,7 @@ class ServiceTest extends PHPUnit_Framework_TestCase
     public function testCompleteWithSuccess()
     {
         $request = $this->getRequestMock();
-        $response = $this->getMock('Omnipay\Common\Message\ResponseInterface');
+        $response = $this->getMockBuilder('Omnipay\Common\Message\ResponseInterface')->getMock();
         $this->gateway
             ->expects($this->once())
             ->method('completePurchase')
@@ -164,7 +164,7 @@ class ServiceTest extends PHPUnit_Framework_TestCase
     public function testCompleteWithFailure()
     {
         $request = $this->getRequestMock();
-        $response = $this->getMock('Omnipay\Common\Message\ResponseInterface');
+        $response = $this->getMockBuilder('Omnipay\Common\Message\ResponseInterface')->getMock();
         $this->gateway
             ->expects($this->once())
             ->method('completePurchase')
@@ -193,7 +193,7 @@ class ServiceTest extends PHPUnit_Framework_TestCase
     public function testCompleteWithError()
     {
         $request = $this->getRequestMock();
-        $response = $this->getMock('Omnipay\Common\Message\ResponseInterface');
+        $response = $this->getMockBuilder('Omnipay\Common\Message\ResponseInterface')->getMock();
         $this->gateway
             ->expects($this->once())
             ->method('completePurchase')
@@ -231,6 +231,6 @@ class ServiceTest extends PHPUnit_Framework_TestCase
     {
         $methods = ['setItems', 'initialize', 'getParameters', 'getResponse', 'send', 'sendData', 'getData'];
 
-        return $this->getMock('Omnipay\Common\Message\RequestInterface', $methods);
+        return $this->getMockBuilder('Omnipay\Common\Message\RequestInterface')->setMethods($methods)->getMock();
     }
 }
