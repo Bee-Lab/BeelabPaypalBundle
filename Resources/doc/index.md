@@ -23,10 +23,10 @@ Enable bundle in the kernel:
 
 public function registerBundles()
 {
-    $bundles = array(
+    $bundles = [
         // ...
         new Beelab\PaypalBundle\BeelabPaypalBundle(),
-    );
+    ];
 }
 ```
 
@@ -140,7 +140,7 @@ class DefaultController
         $transaction->cancel(null);
         $this->getDoctrine()->getManager()->flush();
 
-        return array(); // or a Response...
+        return []; // or a Response...
     }
 
     /**
@@ -156,10 +156,10 @@ class DefaultController
         $this->get('beelab_paypal.service')->setTransaction($transaction)->complete();
         $this->getDoctrine()->getManager()->flush();
         if (!$transazione->isOk()) {
-            return array(); // or a Response (in case of error)
+            return []; // or a Response (in case of error)
         }
 
-        return array(); // or a Response (in case of success)
+        return []; // or a Response (in case of success)
     }
 }
 ```
@@ -168,7 +168,7 @@ If you need to pass some custom parameters to Paypal, you can use the optional s
 method. For example, if you want to hide shipping address, you can do:
 
 ```php
-$response = $this->get('beelab_paypal.service')->setTransaction($transaction, array('noShipping' => 1))->start();
+$response = $this->get('beelab_paypal.service')->setTransaction($transaction, ['noShipping' => 1])->start();
 ```
 
 For a complete set of options, please refer to Paypal official documentation or to OmniPay documentation.
