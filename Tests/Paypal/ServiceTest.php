@@ -4,12 +4,12 @@ namespace Beelab\PaypalBundle\Tests\Paypal;
 
 use Beelab\PaypalBundle\Paypal\Service;
 use Beelab\PaypalBundle\Test\TransactionStub as Transaction;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group unit
  */
-class ServiceTest extends PHPUnit_Framework_TestCase
+class ServiceTest extends TestCase
 {
     private $gateway;
     private $router;
@@ -17,8 +17,8 @@ class ServiceTest extends PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->gateway = $this->getMockBuilder('Omnipay\PayPal\ExpressGateway')->getMock();
-        $this->router = $this->getMockBuilder('Symfony\Component\Routing\RouterInterface')->getMock();
+        $this->gateway = $this->createMock('Omnipay\PayPal\ExpressGateway');
+        $this->router = $this->createMock('Symfony\Component\Routing\RouterInterface');
         $config = [
             'username' => 'a',
             'password' => 'b',

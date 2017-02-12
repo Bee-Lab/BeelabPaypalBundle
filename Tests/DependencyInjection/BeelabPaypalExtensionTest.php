@@ -3,9 +3,9 @@
 namespace Beelab\PaypalBundle\Tests\DependencyInjection;
 
 use Beelab\PaypalBundle\DependencyInjection\BeelabPaypalExtension;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-class BeelabPaypalExtensionTest extends PHPUnit_Framework_TestCase
+class BeelabPaypalExtensionTest extends TestCase
 {
     public function testLoadSetParameters()
     {
@@ -32,5 +32,6 @@ class BeelabPaypalExtensionTest extends PHPUnit_Framework_TestCase
             ['cancel_route' => 'pluto'],
         ];
         $extension->load($configs, $container);
+        $this->assertTrue(true);
     }
 }

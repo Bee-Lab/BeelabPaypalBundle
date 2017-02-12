@@ -3,9 +3,9 @@
 namespace Beelab\PaypalBundle\Tests\DependencyInjection;
 
 use Beelab\PaypalBundle\DependencyInjection\Configuration;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-class ConfigurationTest extends PHPUnit_Framework_TestCase
+class ConfigurationTest extends TestCase
 {
     public function testConfigTreeBuilder()
     {

@@ -4,9 +4,9 @@ namespace Beelab\PaypalBundle\Tests\Entity;
 
 use Beelab\PaypalBundle\Test\TransactionStub as Transaction;
 use DateTime;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-class TransactionTest extends PHPUnit_Framework_TestCase
+class TransactionTest extends TestCase
 {
     public function testGetSetStart()
     {
