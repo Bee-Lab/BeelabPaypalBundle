@@ -4,21 +4,15 @@ namespace Beelab\PaypalBundle\Tests\DependencyInjection;
 
 use Beelab\PaypalBundle\DependencyInjection\BeelabPaypalExtension;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
 class BeelabPaypalExtensionTest extends TestCase
 {
     public function testLoadSetParameters()
     {
-        $container = $this
-            ->getMockBuilder('Symfony\\Component\\DependencyInjection\\ContainerBuilder')
-            ->disableOriginalConstructor()
-            ->getMock()
-        ;
-        $parameterBag = $this
-            ->getMockBuilder('Symfony\Component\DependencyInjection\ParameterBag\\ParameterBag')
-            ->disableOriginalConstructor()
-            ->getMock()
-        ;
+        $container = $this->getMockBuilder(ContainerBuilder::class)->disableOriginalConstructor()->getMock();
+        $parameterBag = $this->getMockBuilder(ParameterBag::class)->disableOriginalConstructor()->getMock();
 
         $parameterBag->expects($this->any())->method('add');
         $container->expects($this->any())->method('getParameterBag')->will($this->returnValue($parameterBag));
