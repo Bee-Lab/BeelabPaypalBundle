@@ -25,13 +25,11 @@
         "phpunit/phpunit": "^6.0"
     },
     "config": {
-        "bin-dir": "bin"
+        "bin-dir": "bin",
+        "sort-packages": true
     },
     "autoload": {
         "psr-4": { "Beelab\\PaypalBundle\\": "" }
-    },
-    "config": {
-        "sort-packages": true
     },
     "extra": {
         "branch-alias": {
