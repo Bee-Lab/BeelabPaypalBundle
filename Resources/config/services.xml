@@ -2,16 +2,17 @@
 
 <container xmlns="http://symfony.com/schema/dic/services"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
 
     <services>
-        <service id="beelab_paypal.service" class="%beelab_paypal.service_class%">
+        <service id="beelab_paypal.service" class="%beelab_paypal.service_class%" public="true">
             <argument type="service" id="beelab_paypal.gateway.express" />
             <argument type="service" id="router" />
             <argument>%beelab_paypal.config%</argument>
         </service>
 
-        <service id="beelab_paypal.gateway.factory" class="Omnipay\Common\GatewayFactory"/>
+        <service id="beelab_paypal.gateway.factory" class="Omnipay\Common\GatewayFactory" public="true"/>
 
         <service id="beelab_paypal.gateway.express" class="Omnipay\PayPal\ExpressGateway" public="false">
             <factory service="beelab_paypal.gateway.factory" method="create"/>
