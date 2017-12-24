@@ -127,7 +127,7 @@ class Service
         if (!isset($responseData['ACK'])) {
             throw new RuntimeException('Missing ACK Payapl in response data.');
         }
-        if ($responseData['ACK'] != 'Success' && $responseData['ACK'] != 'SuccessWithWarning') {
+        if ('Success' != $responseData['ACK'] && 'SuccessWithWarning' != $responseData['ACK']) {
             $this->transaction->error($responseData);
         } else {
             $this->transaction->complete($responseData);

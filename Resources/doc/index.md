@@ -15,7 +15,7 @@ Run from terminal:
 $ composer require beelab/paypal-bundle
 ```
 
-Enable bundle in the kernel:
+Enable bundle in the kernel (unless you're using flex):
 
 ```php
 <?php
@@ -42,7 +42,7 @@ You likely want to put this in your main configuration file:
 beelab_paypal:
     return_route: your_return_route
     cancel_route: your_cancel_route
-    test_mode:    "%kernel.debug%"
+    test_mode: "%kernel.debug%"
 ```
 
 Then, your production configuration file (suppose you created some parameters entries):
@@ -51,8 +51,8 @@ Then, your production configuration file (suppose you created some parameters en
 # app/config/config_prod.yml
 
 beelab_paypal:
-    username:  "%paypal_username%"
-    password:  "%paypal_password%"
+    username: "%paypal_username%"
+    password: "%paypal_password%"
     signature: "%paypal_signature%"
 ```
 
