@@ -220,7 +220,7 @@ abstract class Transaction
      */
     public function complete($response)
     {
-        if ($this->status !== self::STATUS_OK) {
+        if (self::STATUS_OK !== $this->status) {
             $this->status = self::STATUS_OK;
             $this->end = new \DateTime();
             $this->response = $response;
@@ -253,7 +253,7 @@ abstract class Transaction
      */
     public function isOk()
     {
-        return $this->status === self::STATUS_OK;
+        return self::STATUS_OK === $this->status;
     }
 
     /**
