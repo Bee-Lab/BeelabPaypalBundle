@@ -67,7 +67,7 @@ Create a ``Transaction`` entity class:
 // src/AppBundle/Entity
 namespace AppBundle\Entity;
 
-use Beelab\PaypalBundle\Entity\Transaction as BaseTransaction
+use Beelab\PaypalBundle\Entity\Transaction as BaseTransaction;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
