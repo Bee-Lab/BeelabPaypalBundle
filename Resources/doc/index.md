@@ -9,7 +9,16 @@ BeelabPaypalBundle Documentation
 
 ### 1. Installation
 
-Run from terminal:
+If you want to use this bundle with Symfony 3/4, you'll need to require the latest
+version of Omnipay before requiring this bundle.
+Please be aware that such version is still under development:
+
+```bash
+$ composer require php-http/guzzle6-adapter omnipay/common:^3.0@dev
+$ composer require omnipay/paypal:^3.0@dev
+```
+
+Install the bundle:
 
 ```bash
 $ composer require beelab/paypal-bundle
