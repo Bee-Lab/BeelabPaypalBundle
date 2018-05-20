@@ -9,15 +9,6 @@ BeelabPaypalBundle Documentation
 
 ### 1. Installation
 
-If you want to use this bundle with Symfony 3/4, you'll need to require the latest
-version of Omnipay before requiring this bundle.
-Please be aware that such version is still under development:
-
-```bash
-$ composer require php-http/guzzle6-adapter omnipay/common:^3.0@dev
-$ composer require omnipay/paypal:^3.0@dev
-```
-
 Install the bundle:
 
 ```bash
@@ -69,7 +60,7 @@ And the same configuration in your dev configuration file, with Paypal sandbox c
 
 There is a basic entity, representing your transaction (the one for which you need a payment).
 You need to extend it and, of course, you can add your own properties or relationships.
-Create a ``Transaction`` entity class:
+Create a `Transaction` entity class:
 
 ```php
 <?php
@@ -121,7 +112,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class DefaultController
 {
-    public function paymentAction(Request $request)
+    public function payment(Request $request)
     {
         $amount = 100;  // get an amount, e.g. from your cart
         $transaction = new Transaction($amount);
@@ -139,7 +130,7 @@ class DefaultController
     /**
      * The route configured in "cancel_route" (see above) should point here
      */
-    public function canceledPaymentAction(Request $request)
+    public function canceledPayment(Request $request)
     {
         $token = $request->query->get('token');
         $transaction = $this->getDoctrine()->getRepository('AppBundle:Transaction')->findOneByToken($token);
@@ -155,7 +146,7 @@ class DefaultController
     /**
      * The route configured in "return_route" (see above) should point here
      */
-    public function completedPaymentAction(Request $request)
+    public function completedPayment(Request $request)
     {
         $token = $request->query->get('token');
         $transaction = $this->getDoctrine()->getRepository('AppBundle:Transaction')->findOneByToken($token);
@@ -173,7 +164,7 @@ class DefaultController
 }
 ```
 
-If you need to pass some custom parameters to Paypal, you can use the optional second parameter of ``setTransaction``
+If you need to pass some custom parameters to Paypal, you can use the optional second parameter of `setTransaction`
 method. For example, if you want to hide shipping address, you can do:
 
 ```php
