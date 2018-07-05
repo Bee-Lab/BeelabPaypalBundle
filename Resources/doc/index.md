@@ -15,6 +15,14 @@ Install the bundle:
 $ composer require beelab/paypal-bundle
 ```
 
+If you didn't already installed Omnipay, you'll need to install a library implementing 
+[php-http/client-implementation](https://packagist.org/providers/php-http/client-implementation)
+*before*. For example:
+
+```bash
+$ composer require php-http/guzzle6-adapter
+```
+
 Enable bundle in the kernel (unless you're using flex):
 
 ```php
