@@ -22,6 +22,7 @@
         "symfony/routing": "^3.4|^4.0"
     },
     "require-dev": {
+        "php-http/guzzle6-adapter": "^2.0",
         "phpunit/phpunit": "^7.0"
     },
     "config": {
