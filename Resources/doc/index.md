@@ -72,8 +72,8 @@ Create a `Transaction` entity class:
 
 ```php
 <?php
-// src/AppBundle/Entity
-namespace AppBundle\Entity;
+// src/App/Entity
+namespace App\Entity;
 
 use Beelab\PaypalBundle\Entity\Transaction as BaseTransaction;
 use Doctrine\ORM\Mapping as ORM;
@@ -86,18 +86,18 @@ class Transaction extends BaseTransaction
 {
     // if you need other properties, or relationships, add them here...
 
-    public function getDescription()
+    public function getDescription(): ?string
     {
         // here you can return a generic description, if you don't want to list items
     }
 
-    public function getItems()
+    public function getItems(): array
     {
         // here you can return an array of items, with each item being an array of name, quantity, price
         // Note that if the total (price * quantity) of items doesn't match total amount, this won't work
     }
 
-    public function getShippingAmount()
+    public function getShippingAmount(): string
     {
         // here you can return shipping amount. This amount MUST be already in your total amount
     }
@@ -110,10 +110,10 @@ You can now implement your actions inside a controller:
 
 ```php
 <?php
-// src/AppBundle/Controller/DefaultController
-namespace AppBundle\Controller;
+// src/App/Controller/DefaultController
+namespace App\Controller;
 
-use AppBundle\Entity\Transaction;
+use App\Entity\Transaction;
 use Beelab\PaypalBundle\Paypal\Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -141,7 +141,7 @@ class DefaultController
     public function canceledPayment(Request $request)
     {
         $token = $request->query->get('token');
-        $transaction = $this->getDoctrine()->getRepository('AppBundle:Transaction')->findOneByToken($token);
+        $transaction = $this->getDoctrine()->getRepository('App:Transaction')->findOneByToken($token);
         if (is_null($transaction)) {
             throw $this->createNotFoundException(sprintf('Transaction with token %s not found.', $token));
         }
@@ -157,7 +157,7 @@ class DefaultController
     public function completedPayment(Request $request)
     {
         $token = $request->query->get('token');
-        $transaction = $this->getDoctrine()->getRepository('AppBundle:Transaction')->findOneByToken($token);
+        $transaction = $this->getDoctrine()->getRepository('App:Transaction')->findOneByToken($token);
         if (is_null($transaction)) {
             throw $this->createNotFoundException(sprintf('Transaction with token %s not found.', $token));
         }

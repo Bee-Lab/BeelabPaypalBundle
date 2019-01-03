@@ -15,7 +15,7 @@ class ServiceTest extends TestCase
     private $router;
     private $service;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->gateway = $this->createMock('Omnipay\PayPal\ExpressGateway');
         $this->router = $this->createMock('Symfony\Component\Routing\RouterInterface');
@@ -55,7 +55,7 @@ class ServiceTest extends TestCase
         $this->service = new Service($this->gateway, $this->router, $config);
     }
 
-    public function testStart()
+    public function testStart(): void
     {
         $request = $this->getRequestMock();
         $response = $this->getMockBuilder('Omnipay\Common\Message\ResponseInterface')->getMock();
@@ -89,11 +89,10 @@ class ServiceTest extends TestCase
         $this->service->start();
     }
 
-    /**
-     * @expectedException \Beelab\PaypalBundle\Paypal\Exception
-     */
-    public function testStartFailure()
+    public function testStartFailure(): void
     {
+        $this->expectException(\Beelab\PaypalBundle\Paypal\Exception::class);
+
         $request = $this->getRequestMock();
         $response = $this->getMockBuilder('Omnipay\Common\Message\ResponseInterface')->getMock();
         $this->gateway
@@ -121,15 +120,14 @@ class ServiceTest extends TestCase
         $this->service->start();
     }
 
-    /**
-     * @expectedException \RuntimeException
-     */
-    public function testStartWithoutTransaction()
+    public function testStartWithoutTransaction(): void
     {
+        $this->expectException(\RuntimeException::class);
+
         $this->service->start();
     }
 
-    public function testCompleteWithSuccess()
+    public function testCompleteWithSuccess(): void
     {
         $request = $this->getRequestMock();
         $response = $this->getMockBuilder('Omnipay\Common\Message\ResponseInterface')->getMock();
@@ -158,11 +156,10 @@ class ServiceTest extends TestCase
         $this->service->complete();
     }
 
-    /**
-     * @expectedException \RuntimeException
-     */
-    public function testCompleteWithFailure()
+    public function testCompleteWithFailure(): void
     {
+        $this->expectException(\RuntimeException::class);
+
         $request = $this->getRequestMock();
         $response = $this->getMockBuilder('Omnipay\Common\Message\ResponseInterface')->getMock();
         $this->gateway
@@ -190,7 +187,7 @@ class ServiceTest extends TestCase
         $this->service->complete();
     }
 
-    public function testCompleteWithError()
+    public function testCompleteWithError(): void
     {
         $request = $this->getRequestMock();
         $response = $this->getMockBuilder('Omnipay\Common\Message\ResponseInterface')->getMock();
@@ -219,11 +216,10 @@ class ServiceTest extends TestCase
         $this->service->complete();
     }
 
-    /**
-     * @expectedException \RuntimeException
-     */
-    public function testCompleteWithoutTransaction()
+    public function testCompleteWithoutTransaction(): void
     {
+        $this->expectException(\RuntimeException::class);
+
         $this->service->complete();
     }
 

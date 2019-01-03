@@ -81,7 +81,7 @@ class Service
                 RouterInterface::ABSOLUTE_URL
             ),
         ];
-        $this->params = array_merge($defaultParameters, $customParameters);
+        $this->params = \array_merge($defaultParameters, $customParameters);
         $this->transaction = $transaction;
         $items = $transaction->getItems();
         if (!empty($items)) {
@@ -98,7 +98,7 @@ class Service
      */
     public function start()
     {
-        if (is_null($this->transaction)) {
+        if (null === $this->transaction) {
             throw new RuntimeException('Transaction not defined. Call setTransaction() first.');
         }
         $items = $this->transaction->getItems();
@@ -115,9 +115,9 @@ class Service
     /**
      * Complete transaction. You need to call setTransaction() before.
      */
-    public function complete()
+    public function complete(): void
     {
-        if (is_null($this->transaction)) {
+        if (null === $this->transaction) {
             throw new RuntimeException('Transaction not defined. Call setTransaction() first.');
         }
         $items = $this->transaction->getItems();

@@ -74,151 +74,81 @@ abstract class Transaction
      */
     protected $response;
 
-    /**
-     * Constructor.
-     *
-     * @param string $amount
-     */
     public function __construct($amount = null)
     {
         $this->amount = $amount;
         $this->start = new \DateTime();
     }
 
-    /**
-     * Get id.
-     *
-     * @return int
-     */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * Set start.
-     *
-     * @param \DateTime $start
-     */
-    public function setStart($start)
+    public function setStart(?\DateTime $start): self
     {
         $this->start = $start;
 
         return $this;
     }
 
-    /**
-     * Get start.
-     *
-     * @return \DateTime
-     */
-    public function getStart()
+    public function getStart(): ?\DateTime
     {
         return $this->start;
     }
 
-    /**
-     * Set end.
-     *
-     * @param \DateTime $end
-     */
-    public function setEnd($end)
+    public function setEnd(?\DateTime $end): self
     {
         $this->end = $end;
 
         return $this;
     }
 
-    /**
-     * Get end.
-     *
-     * @return \DateTime
-     */
-    public function getEnd()
+    public function getEnd(): ?\DateTime
     {
         return $this->end;
     }
 
-    /**
-     * Set status.
-     *
-     * @param int $status
-     */
-    public function setStatus($status)
+    public function setStatus(?int $status): ?int
     {
         $this->status = $status;
 
         return $status;
     }
 
-    /**
-     * Get status.
-     *
-     * @return int
-     */
-    public function getStatus()
+    public function getStatus(): ?int
     {
         return $this->status;
     }
 
-    /**
-     * @return string
-     */
-    public function getStatusLabel()
+    public function getStatusLabel(): string
     {
         return isset(static::$statuses[$this->status]) ? static::$statuses[$this->status] : 'invalid';
     }
 
-    /**
-     * Set token.
-     *
-     * @param string $token
-     *
-     * @return Transaction
-     */
-    public function setToken($token)
+    public function setToken(?string $token): self
     {
         $this->token = $token;
 
         return $this;
     }
 
-    /**
-     * Get token.
-     *
-     * @return string
-     */
-    public function getToken()
+    public function getToken(): ?string
     {
         return $this->token;
     }
 
-    /**
-     * Get amount.
-     *
-     * @return string
-     */
-    public function getAmount()
+    public function getAmount(): ?string
     {
         return $this->amount;
     }
 
-    /**
-     * Get response.
-     *
-     * @return array
-     */
-    public function getResponse()
+    public function getResponse(): ?array
     {
         return $this->response;
     }
 
-    /**
-     * Complete transaction.
-     *
-     * @param string $response
-     */
-    public function complete($response)
+    public function complete(array $response): void
     {
         if (self::STATUS_OK !== $this->status) {
             $this->status = self::STATUS_OK;
@@ -227,60 +157,35 @@ abstract class Transaction
         }
     }
 
-    /**
-     * Cancel transaction.
-     */
-    public function cancel()
+    public function cancel(): void
     {
         $this->status = self::STATUS_KO;
         $this->end = new \DateTime();
     }
 
-    /**
-     * Transaction ended with an error.
-     *
-     * @param string $response
-     */
-    public function error($response)
+    public function error(array $response): void
     {
         $this->status = self::STATUS_ERROR;
         $this->end = new \DateTime();
         $this->response = $response;
     }
 
-    /**
-     * @return bool
-     */
-    public function isOk()
+    public function isOk(): bool
     {
         return self::STATUS_OK === $this->status;
     }
 
-    /**
-     * Get description.
-     *
-     * @return string
-     */
-    public function getDescription()
+    public function getDescription(): ?string
     {
+        return null;
     }
 
-    /**
-     * Get items.
-     *
-     * @return array
-     */
-    public function getItems()
+    public function getItems(): array
     {
         return [];
     }
 
-    /**
-     * Get shipping amount.
-     *
-     * @return string
-     */
-    public function getShippingAmount()
+    public function getShippingAmount(): string
     {
         return '0.00';
     }

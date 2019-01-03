@@ -31,7 +31,7 @@ class PaypalServiceStub extends Service
     /**
      * Complete transaction. You need to call setTransaction() before.
      */
-    public function complete()
+    public function complete(): void
     {
     }
 }
