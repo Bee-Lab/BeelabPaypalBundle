@@ -11,6 +11,7 @@
             <argument type="service" id="router" />
             <argument>%beelab_paypal.config%</argument>
         </service>
+        <service id="Beelab\PaypalBundle\Paypal\Service" alias="beelab_paypal.service"  public="true"/>
 
         <service id="beelab_paypal.gateway.factory" class="Omnipay\Common\GatewayFactory" public="true"/>
 

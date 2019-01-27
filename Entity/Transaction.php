@@ -68,7 +68,7 @@ abstract class Transaction
     protected $amount = 0;
 
     /**
-     * @var string
+     * @var array
      *
      * @ORM\Column(type="array")
      */
