@@ -6,6 +6,7 @@
 >
 
     <services>
+        <!-- TODO remove "s%beelab_paypal.ervice_class", as it's deprecated. Use FCQN instead -->
         <service id="beelab_paypal.service" class="%beelab_paypal.service_class%" public="true">
             <argument type="service" id="beelab_paypal.gateway.express" />
             <argument type="service" id="router" />

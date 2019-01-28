@@ -41,6 +41,7 @@ final class Configuration implements ConfigurationInterface
                 ->scalarNode('service_class')
                     ->cannotBeEmpty()
                     ->defaultValue('Beelab\PaypalBundle\Paypal\Service')
+                    ->setDeprecated('The "service_class" option is deprecated. Define your class as service instead.')
                 ->end()
                 ->booleanNode('test_mode')
                     ->defaultValue(false)

@@ -13,6 +13,7 @@ class BeelabPaypalExtension extends Extension
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
+        // TODO remove "service_class", as it's deprecated
         $container->setParameter('beelab_paypal.service_class', $config['service_class']);
         unset($config['service_class']);
         $container->setParameter('beelab_paypal.config', $config);
