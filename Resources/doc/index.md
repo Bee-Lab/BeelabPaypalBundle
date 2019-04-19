@@ -168,11 +168,12 @@ class DefaultController
 If you need to pass some custom parameters to Paypal, you can use the optional second parameter of `setTransaction`
 method. For example, if you want to hide shipping address, you can do:
 
-If you need to use your custom class instead of bundle's `Service`, you can extend `Service` and define your
-class a public service. Using `service_class` option was supported, but it's now deprecated.
-
 ```php
 $response = $service->setTransaction($transaction, ['noShipping' => 1])->start();
 ```
 
 For a complete set of options, please refer to Paypal official documentation or to OmniPay documentation.
+
+If you need to use your custom class instead of bundle's `Service`, you can extend `Service` and define your
+class a public service. Using `service_class` option was supported, but it's now deprecated.
+
