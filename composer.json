@@ -2,7 +2,10 @@
     "name": "beelab/paypal-bundle",
     "type": "symfony-bundle",
     "description": "Simple bundle for Paypal integration",
-    "keywords": ["Paypal", "payment"],
+    "keywords": [
+        "Paypal",
+        "payment"
+    ],
     "homepage": "https://github.com/bee-lab/",
     "license": "LGPL-3.0-or-later",
     "authors": [
@@ -15,11 +18,11 @@
         "php": "^7.1",
         "doctrine/orm": "^2.5",
         "omnipay/paypal": "^3.0",
-        "symfony/config": "^3.4|^4.0",
-        "symfony/dependency-injection": "^3.4|^4.0",
-        "symfony/expression-language": "^3.4|^4.0",
-        "symfony/http-kernel": "^3.4|^4.0",
-        "symfony/routing": "^3.4|^4.0"
+        "symfony/config": "^3.4 || ^4.0",
+        "symfony/dependency-injection": "^3.4 || ^4.0",
+        "symfony/expression-language": "^3.4 || ^4.0",
+        "symfony/http-kernel": "^3.4 || ^4.0",
+        "symfony/routing": "^3.4 || ^4.0"
     },
     "require-dev": {
         "php-http/guzzle6-adapter": "^2.0",
@@ -29,12 +32,14 @@
         "bin-dir": "bin",
         "sort-packages": true
     },
-    "autoload": {
-        "psr-4": { "Beelab\\PaypalBundle\\": "" }
-    },
     "extra": {
         "branch-alias": {
             "dev-master": "1.4.x-dev"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Beelab\\PaypalBundle\\": ""
         }
     }
 }
