@@ -32,25 +32,25 @@ class ServiceTest extends TestCase
             ->expects($this->once())
             ->method('setUsername')
             ->with('a')
-            ->will($this->returnSelf())
+            ->willReturnSelf()
         ;
         $this->gateway
             ->expects($this->once())
             ->method('setPassword')
             ->with('b')
-            ->will($this->returnSelf())
+            ->willReturnSelf()
         ;
         $this->gateway
             ->expects($this->once())
             ->method('setSignature')
             ->with('c')
-            ->will($this->returnSelf())
+            ->willReturnSelf()
         ;
         $this->gateway
             ->expects($this->once())
             ->method('setTestMode')
             ->with(true)
-            ->will($this->returnSelf())
+            ->willReturnSelf()
         ;
         $this->service = new Service($this->gateway, $this->router, $config);
     }
@@ -62,26 +62,26 @@ class ServiceTest extends TestCase
         $this->gateway
             ->expects($this->once())
             ->method('purchase')
-            ->will($this->returnValue($request))
+            ->willReturn($request)
         ;
         $request
             ->expects($this->once())
             ->method('setItems')
-            ->will($this->returnSelf());
+            ->willReturnSelf();
         $request
             ->expects($this->once())
             ->method('send')
-            ->will($this->returnValue($response))
+            ->willReturn($response)
         ;
         $response
             ->expects($this->once())
             ->method('isRedirect')
-            ->will($this->returnValue(true))
+            ->willReturn(true)
         ;
         $response
             ->expects($this->once())
             ->method('getTransactionReference')
-            ->will($this->returnValue('ref'))
+            ->willReturn('ref')
         ;
 
         $transaction = new Transaction(11);
@@ -98,21 +98,21 @@ class ServiceTest extends TestCase
         $this->gateway
             ->expects($this->once())
             ->method('purchase')
-            ->will($this->returnValue($request))
+            ->willReturn($request)
         ;
         $request
             ->expects($this->once())
             ->method('setItems')
-            ->will($this->returnSelf());
+            ->willReturnSelf();
         $request
             ->expects($this->once())
             ->method('send')
-            ->will($this->returnValue($response))
+            ->willReturn($response)
         ;
         $response
             ->expects($this->once())
             ->method('isRedirect')
-            ->will($this->returnValue(false))
+            ->willReturn(false)
         ;
 
         $transaction = new Transaction(11);
@@ -134,21 +134,21 @@ class ServiceTest extends TestCase
         $this->gateway
             ->expects($this->once())
             ->method('completePurchase')
-            ->will($this->returnValue($request))
+            ->willReturn($request)
         ;
         $request
             ->expects($this->once())
             ->method('setItems')
-            ->will($this->returnSelf());
+            ->willReturnSelf();
         $request
             ->expects($this->once())
             ->method('send')
-            ->will($this->returnValue($response))
+            ->willReturn($response)
         ;
         $response
             ->expects($this->once())
             ->method('getData')
-            ->will($this->returnValue(['ACK' => 'Success']))
+            ->willReturn(['ACK' => 'Success'])
         ;
 
         $transaction = new Transaction(11);
@@ -165,21 +165,21 @@ class ServiceTest extends TestCase
         $this->gateway
             ->expects($this->once())
             ->method('completePurchase')
-            ->will($this->returnValue($request))
+            ->willReturn($request)
         ;
         $request
             ->expects($this->once())
             ->method('setItems')
-            ->will($this->returnSelf());
+            ->willReturnSelf();
         $request
             ->expects($this->once())
             ->method('send')
-            ->will($this->returnValue($response))
+            ->willReturn($response)
         ;
         $response
             ->expects($this->once())
             ->method('getData')
-            ->will($this->returnValue(['foo' => 'bar']))
+            ->willReturn(['foo' => 'bar'])
         ;
 
         $transaction = new Transaction(11);
@@ -194,21 +194,21 @@ class ServiceTest extends TestCase
         $this->gateway
             ->expects($this->once())
             ->method('completePurchase')
-            ->will($this->returnValue($request))
+            ->willReturn($request)
         ;
         $request
             ->expects($this->once())
             ->method('setItems')
-            ->will($this->returnSelf());
+            ->willReturnSelf();
         $request
             ->expects($this->once())
             ->method('send')
-            ->will($this->returnValue($response))
+            ->willReturn($response)
         ;
         $response
             ->expects($this->once())
             ->method('getData')
-            ->will($this->returnValue(['ACK' => 'Failure']))
+            ->willReturn(['ACK' => 'Failure'])
         ;
 
         $transaction = new Transaction(11);
