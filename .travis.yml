@@ -19,9 +19,10 @@ matrix:
         - php: 7.2
           env: SYMFONY_VERSION=3.4.*
         - php: 7.3
-          env: SYMFONY_VERSION=4.2.* SYMFONY_DEPRECATIONS_HELPER=strict 
-    allow_failures:
+          env: SYMFONY_VERSION=4.4.* SYMFONY_DEPRECATIONS_HELPER=strict 
         - php: 7.4
+          env: SYMFONY_VERSION=5.0.*
+    allow_failures:
         - php: nightly
 
 env:
@@ -31,6 +32,6 @@ env:
 
 before_script:
     - composer self-update
-    - if [ "$SYMFONY_VERSION" != "" ]; then composer require "symfony/symfony:${SYMFONY_VERSION}" --no-update; fi;
+    - if [ "$SYMFONY_VERSION" != "" ]; then composer require "symfony/framework-bundle:${SYMFONY_VERSION}" --no-update; fi;
 
 install: composer update $COMPOSER_FLAGS --no-interaction

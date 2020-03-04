@@ -18,15 +18,16 @@
         "php": "^7.1",
         "doctrine/orm": "^2.5",
         "omnipay/paypal": "^3.0",
-        "symfony/config": "^3.4 || ^4.0",
-        "symfony/dependency-injection": "^3.4 || ^4.0",
-        "symfony/expression-language": "^3.4 || ^4.0",
-        "symfony/http-kernel": "^3.4 || ^4.0",
-        "symfony/routing": "^3.4 || ^4.0"
+        "symfony/config": "^3.4 || ^4.4 || ^5.0",
+        "symfony/dependency-injection": "^3.4 || ^4.4 || ^5.0",
+        "symfony/expression-language": "^3.4 || ^4.4 || ^5.0",
+        "symfony/http-kernel": "^3.4 || ^4.4 || ^5.0",
+        "symfony/routing": "^3.4 || ^4.4 || ^5.0"
     },
     "require-dev": {
+        "omnipay/common": "^3.0@dev",
         "php-http/guzzle6-adapter": "^2.0",
-        "phpunit/phpunit": "^7.0"
+        "phpunit/phpunit": "^7.5 || ^8.5"
     },
     "config": {
         "bin-dir": "bin",
@@ -34,7 +35,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.4.x-dev"
+            "dev-master": "1.5.x-dev"
         }
     },
     "autoload": {
