@@ -23,11 +23,6 @@ If you didn't already installed Omnipay, you'll need to install a library implem
 $ composer require php-http/guzzle6-adapter
 ```
 
-If you're using Symfony 5, be aware that Omnypay is currently still not compatible, so
-you'll need to require `"omnipay/common": "^3.0@dev"`. This is true with current v3.0.2
-release of Omnipay, so you can check on [their releases page](https://github.com/thephpleague/omnipay-common/releases)
-if situation improved.
-
 Enable bundle in the kernel (unless you're using flex):
 
 ```php
