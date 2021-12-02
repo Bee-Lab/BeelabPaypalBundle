@@ -156,7 +156,7 @@ class DefaultController
         }
         $service->setTransaction($transaction)->complete();
         $this->getDoctrine()->getManager()->flush();
-        if (!$transazione->isOk()) {
+        if (!$transaction->isOk()) {
             return []; // or a Response (in case of error)
         }
 
